@@ -17,3 +17,8 @@ def count_predecessors(idx: int):
 	appointments=Appointment.query.filter_by(purpose_idx=appointment.purpose_idx).all()
 	predecessors = list(filter(lambda x: x.idx<appointment.idx, appointments))
 	return len(predecessors)
+
+def remove(idx:int):
+	appointment = Appointment.query.get(idx)
+	db.session.delete(appointment)
+	db.session.commit()
